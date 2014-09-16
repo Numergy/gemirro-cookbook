@@ -41,5 +41,5 @@ describe command('/usr/bin/gemirro server --status -c /opt/gemirro/config.rb') d
 end
 
 describe port(80) do
-  it { should be_listenning }
+  it { should be_listening }
 end
