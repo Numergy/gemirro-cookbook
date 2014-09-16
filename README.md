@@ -1,4 +1,4 @@
-# gemirro Cookbook
+# gemirro Cookbook | [![Build Status](https://travis-ci.org/Numergy/gemirro-cookbook.svg)](https://travis-ci.org/Numergy/gemirro-cookbook)
 
 This cookbook install and configure [gemirro][gemirro].
 
