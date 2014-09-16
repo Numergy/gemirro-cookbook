@@ -1,0 +1,22 @@
+# -*- coding: utf-8 -*-
+# This is the main configuration file for your RubyGems mirror. Here you can
+# change settings such as the location to store Gem files in and what source
+# and Gems you'd like to mirror at start.
+Gemirro.configuration.configure do
+  destination File.expand_path('../public', __FILE__)
+  logger.level = Logger::INFO
+  server_host = 'localhost'
+  server_port = '2000'
+
+  define_source 'rubygems', 'http://rubygems.org' do
+    <% node['gemirro']['gems'].each do |gem, versions| -%>
+      <% if versions.? -%>
+        <%= "gem '#{gem}'" %>
+      <% else -%>
+        <% versions.each do |version| -%>
+          <%= "gem '#{gem}', '#{version}'" %>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+  end
+end

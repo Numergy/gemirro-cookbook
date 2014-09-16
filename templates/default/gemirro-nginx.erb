@@ -1,0 +1,22 @@
+#
+# nginx proxy for gemirro server
+#
+
+upstream gemirro {
+  server 127.0.0.1:2000;
+}
+
+server {
+    listen <%= node['gemirro']['server']['port'] %>;
+    server_name <%= node['gemirro']['server']['host'] %>;
+    access_log <%= node['gemirro']['server']['log_directory'] %>/access.log;
+    error_log <%= node['gemirro']['server']['log_directory'] %>/error.log;
+    client_max_body_size 0;
+
+    location / {
+        proxy_pass http://gemirro;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}

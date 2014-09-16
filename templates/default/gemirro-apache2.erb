@@ -1,0 +1,11 @@
+<VirtualHost *:<%= node['gemirro']['server']['port'] %>>
+  ServerName <%= node['gemirro']['server']['host'] %>
+  ProxyPreserveHost On
+  ProxyRequests off
+  ProxyPass / http://localhost:2000/
+  ProxyPassReverse / http://localhost:2000/
+
+  LogLevel warn
+  CustomLog <%= node['gemirro']['server']['log_directory'] %>/access.log combined
+  ErrorLog <%= node['gemirro']['server']['log_directory'] %>/error.log
+</VirtualHost>

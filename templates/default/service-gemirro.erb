@@ -1,0 +1,60 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          gemirro
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the gemirro web server
+# Description:       starts gemirro using start-stop-daemon
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=gemirro
+
+start() {
+    execute_command "$DAEMON server --start"
+}
+
+# Restart the service Gemirro
+stop() {
+    execute_command "$DAEMON server --stop"
+}
+
+# Restart the service Gemirro
+restart() {
+    execute_command "$DAEMON server --restart"
+}
+
+# Retrieve Gemirro status
+status() {
+    execute_command "$DAEMON server --status"
+}
+
+execute_command(){
+    pushd <%= node['gemirro']['directory'] %> 2&> /dev/null
+    eval $1
+    popd 2&> /dev/null
+    echo -n ''
+}
+
+### main logic ###
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart|reload)
+        restart
+        ;;
+    status)
+        status
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+exit 0
