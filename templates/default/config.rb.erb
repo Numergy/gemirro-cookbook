@@ -10,7 +10,7 @@ Gemirro.configuration.configure do
 
   define_source 'rubygems', 'http://rubygems.org' do
     <% node['gemirro']['gems'].each do |gem, versions| -%>
-      <% if versions.? -%>
+      <% if versions.nil? -%>
         <%= "gem '#{gem}'" %>
       <% else -%>
         <% versions.each do |version| -%>
