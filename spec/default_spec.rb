@@ -31,7 +31,8 @@ describe 'gemirro::default' do
 
     it 'should create hostfile entry' do
       expect(subject).to create_hostsfile_entry('127.0.0.1').with(
-        hostname: 'chefspec.local'
+        hostname: 'chefspec.local',
+        aliases: ['localhost']
       )
     end
   end
@@ -75,7 +76,8 @@ describe 'gemirro::default' do
 
     it 'should create hostfile entry' do
       expect(subject).to create_hostsfile_entry('127.0.0.1').with(
-        hostname: 'gemirro-mirror'
+        hostname: 'gemirro-mirror',
+        aliases: ['localhost']
       )
     end
   end

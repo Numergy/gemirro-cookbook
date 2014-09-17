@@ -36,6 +36,7 @@ end
 
 hostsfile_entry '127.0.0.1' do
   hostname node['gemirro']['server']['host']
+  aliases ['localhost']
   action :create
 end
 
