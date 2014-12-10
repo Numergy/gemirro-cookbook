@@ -6,7 +6,7 @@ describe 'gemirro::default' do
   include_context 'gemirro_stubs'
 
   describe 'with default attributes' do
-    subject { ChefSpec::Runner.new.converge(described_recipe) }
+    subject { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
     it 'does includes recipes' do
       expect(subject).to include_recipe('apt')
@@ -39,7 +39,7 @@ describe 'gemirro::default' do
 
   describe 'with overriden attributes' do
     let(:subject) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::ServerRunner.new do |node|
         node.set['gemirro']['directory'] = '/var/www/gemirro'
         node.set['gemirro']['server']['host'] = 'gemirro-mirror'
         node.set['gemirro']['server']['port'] = '8088'

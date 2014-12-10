@@ -5,7 +5,7 @@ require_relative 'spec_helper'
 describe 'gemirro::configure' do
   include_context 'gemirro_stubs'
 
-  subject { ChefSpec::Runner.new.converge(described_recipe) }
+  subject { ChefSpec::ServerRunner.new.converge(described_recipe) }
 
   it 'should initialize gemirro' do
     expect(subject).to run_execute('init-gemirro').with(
