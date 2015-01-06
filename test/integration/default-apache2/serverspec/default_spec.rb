@@ -37,7 +37,7 @@ end
 end
 
 describe command('/usr/bin/gemirro server --status -c /opt/gemirro/config.rb') do
-  it { should return_stdout 'gemirro is running' }
+  its(:stdout) { should match(/gemirro is running/) }
 end
 
 describe port(80) do
