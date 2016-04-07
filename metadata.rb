@@ -14,3 +14,8 @@ depends 'hostsfile'
 %w( debian ubuntu ).each do |os|
   supports os
 end
+
+source_url 'https://github.com/Numergy/gemirro-cookbook' if
+  respond_to?(:source_url)
+issues_url 'https://github.com/Numergy/gemirro-cookbook/issues' if
+  respond_to?(:issues_url)
